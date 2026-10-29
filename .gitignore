@@ -68,7 +68,13 @@ Thumbs.db
 # Migrations (keep migrations tracked)
 # apps/*/migrations/0*.py
 
+# Docs (internal — not pushed to repo)
+docs/
+
 # Secrets
 secrets.json
 *.pem
 *.key
+
+docs/**
+
