@@ -1,0 +1,33 @@
+[tool.black]
+line-length = 100
+target-version = ['py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs | \.git | \.hg | \.mypy_cache | \.tox | \.venv
+    | _build | buck-out | build | dist | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = ["migrations", ".venv"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.development"
+python_files = ["tests.py", "test_*.py", "*_test.py"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["apps", "common"]
+omit = ["*/migrations/*", "*/tests/*", "*/__pycache__/*"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
